@@ -1,0 +1,11 @@
+@import '@/global.scss';
+
+.footer-container {
+  background-color: seagreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: $primary;
+  color: $neutral-1;
+}

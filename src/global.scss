@@ -1,5 +1,6 @@
 @import 'styles/scss/colors';
 @import 'styles/scss/fonts';
+@import 'styles/variables.scss';
 
 main, html, body {
   font-family: $body-font-family, 'roboto' !important;
@@ -9,4 +10,41 @@ main, html, body {
 
 * {
   box-sizing: border-box !important;
+}
+
+*::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+  border-radius: 20px;
+  background: $neutral-3;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: $neutral-4;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.5s ease-in;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.6s cubic-bezier(.36,.84,1,.44);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(100vw);
+  opacity: 0;
+}
+
+.view-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.util-view {
+  min-height: calc(100vh - 120px);
+  padding: 10px 15px 20px 15px  !important;
 }
