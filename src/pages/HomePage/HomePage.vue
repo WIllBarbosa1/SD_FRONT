@@ -8,49 +8,42 @@
       <h4 class="text-center">Ultimas Notícias</h4>
     </div>
     <div class="news-section">
-      <div class="news-card">
-        <h2>Titulo</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut illo
-          excepturi quibusdam sunt itaque expedita cumque ratione, odio
-          voluptas, harum natus ullam. Dolorem, sint esse.
-        </p>
-        <span>20/05/2022</span>
-      </div>
-      <div class="news-card">
-        <h2>Titulo</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut illo
-          excepturi quibusdam sunt itaque expedita cumque ratione, odio
-          voluptas, harum natus ullam. Dolorem, sint esse.
-        </p>
-        <span>20/05/2022</span>
-      </div>
-      <div class="news-card">
-        <h2>Titulo</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut illo
-          excepturi quibusdam sunt itaque expedita cumque ratione, odio
-          voluptas, harum natus ullam. Dolorem, sint esse.
-        </p>
-        <span>20/05/2022</span>
-      </div>
-      <div class="news-card">
-        <h2>Titulo</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut illo
-          excepturi quibusdam sunt itaque expedita cumque ratione, odio
-          voluptas, harum natus ullam. Dolorem, sint esse.
-        </p>
-        <span>20/05/2022</span>
+      <div class="news-card" v-for="(item, index) in news">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.body }}</p>
+        <span>{{ item.author }}</span>
+        <span>{{ hadleFormatDate(item.created_at) }}</span>
       </div>
     </div>
   </el-main>
 </template>
 
 <script>
+import { getNews } from "@/service/api";
+
 export default {
   name: "HomePage",
+  data() {
+    return {
+      news: [],
+    };
+  },
+  methods: {
+    async fetchGetNews() {
+      try {
+        const { data } = await getNews();
+        this.news = data;
+      } catch (error) {
+        console.log("Error: ", error);
+      }
+    },
+    hadleFormatDate(date) {
+      return new Date(date).toLocaleDateString();
+    },
+  },
+  async created() {
+    await this.fetchGetNews();
+  },
 };
 </script>
 

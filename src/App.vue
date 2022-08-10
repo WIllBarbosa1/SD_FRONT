@@ -1,9 +1,9 @@
 <template>
   <el-main class="view-container">
     <Header />
-    <transition name="slide-fade" mode="out-in">
-      <router-view class="util-view" />
-    </transition>
+    <!-- <transition name="slide-fade" mode="out-in"> -->
+    <router-view class="util-view" />
+    <!-- </transition> -->
     <Footer />
   </el-main>
 </template>
